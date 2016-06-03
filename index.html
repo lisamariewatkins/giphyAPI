@@ -3,16 +3,19 @@
 <head>
 	<title>GiphyAPI</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
 </head>
 <body>
-	<div id="title"><h1>Musical GIFy API</h1></div>
-	<div id="instructions">Click on an artist to get ten awesome GIFs! Click on a GIF to play it, click again to put it on pause.  You can search whatever artist you like to add them to your awesome fun GIF list! Happy GIFing!</div>
-	<div id='artistButtons'></div>
+	<div id="title"><h1>Musical GIF-y API</h1></div>
+	<div id="instructions">Click on an artist to get ten awesome GIFs! Click on a GIF to play it, click again to put it on pause.  You can search whatever artist you like to add them to your awesome fun GIF list! Happy GIFing!<br><br></div>
+	<div id='artistButtons'></div><br>
 	<div id='artistSearch'>
 		<form id="artist-form">
-	    <label for="artist-input">Add an artist</label>
-	    <input type="text" id="artist-input"><br>
-	    <input id="addArtist" type="submit" value="Add an artist">
+	    <label for="artist-input">Add an artist:</label>
+	    <input type="text" id="artist-input">
+	    <input id="addArtist" type="submit" value="Click Me!">
   </form>
 	</div>
 	<div id='artistGifs'></div>

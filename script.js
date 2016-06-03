@@ -37,6 +37,7 @@ function renderButtons(){
 					gifImage.attr('data-still', currentGif.images.fixed_height_still.url);
 					gifImage.attr('data-state', "still")
 					gifImage.addClass('giphy');
+					$('#artistGifs').append("<br><br>Rating: " + currentGif.rating.toUpperCase() + "<br>");
 					$('#artistGifs').append(gifImage);
 				}
 			});	

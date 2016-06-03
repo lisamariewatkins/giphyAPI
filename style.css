@@ -1,2 +1,9 @@
-p{text-transform:capitalize;
+*{
+	text-align: center;
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-size: 20px;
+}
+
+div{
+	margin: 10px;
 }
