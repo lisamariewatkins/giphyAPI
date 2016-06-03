@@ -2,6 +2,14 @@ var artistArray = ['Cake', 'Spoon', 'The Beatles', 'Ween', 'The Strokes', 'Red H
 
 var artistImage = $('<img>');
 
+var gifStatic = true;
+
+var gifImage;
+
+var results;
+
+var currentGif;
+
 //==============================================================================
 
 function renderButtons(){
@@ -17,27 +25,27 @@ function renderButtons(){
 
 			.done(function(response){
 				$('#artistGifs').empty();
-				var results = response.data;
-				var gifStatic = true;
+				results = response.data;
 
 				for (var i = 0; i < results.length; i++){
 					var gifDiv = $("<div class='image'>");
-					var gifImage = $('<img>');
-					gifImage.attr('src', results[i].images.fixed_height_still.url);
+					currentGif = results[i]
+					gifImage = $('<img>');
+					gifImage.attr('src', currentGif.images.fixed_height_still.url);
 					gifDiv.append(gifImage);
 					$('#artistGifs').append(gifDiv);
 				}
-				//not working
-				gifDiv.on('click', function(){
-					if (gifStatic === true){
-						gifImage.attr('src', results[i].images.fixed_height.url);
-						gifStatic = false;
-					}
-					if (!gifStatic){
-						gifImage.attr('src', results[i].images.fixed_height_still.url);
-					}
-				});
 			});
+
+		$('#artistGifs').children().on('click', function(){
+			if (gifStatic === true){
+				gifImage.attr('src', currentGif.images.fixed_height.url);
+				gifStatic = false;
+			}
+			if (!gifStatic){
+				gifImage.attr('src', results[i].images.fixed_height_still.url);
+			}
+		});
 	});
 }
 
