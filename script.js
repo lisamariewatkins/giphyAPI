@@ -30,7 +30,6 @@ function renderButtons(){
 				results = response.data;
 
 				for (var i = 0; i < results.length; i++){
-					var gifDiv = $("<div class='image'>");
 					currentGif = results[i]
 					gifImage = $('<img>');
 					gifImage.attr('src', currentGif.images.fixed_height_still.url);
@@ -38,21 +37,17 @@ function renderButtons(){
 					gifImage.attr('data-still', currentGif.images.fixed_height_still.url);
 					gifImage.attr('data-state', "still")
 					gifImage.addClass('giphy');
-					gifDiv.append(gifImage);
-					$('#artistGifs').append(gifDiv);
+					$('#artistGifs').append(gifImage);
 				}
-			});
-		$(".giphy").on('click', function(){
-		var state = $(this).attr('data-state');
-		if (state == 'still'){
-            $(this).attr('src', $(this).data('animate'));
-            $(this).attr('data-state', 'animate');
-        }else{
-            $(this).attr('src', $(this).data('still'));
-            $(this).attr('data-state', 'still');
-        }
-	})
+			});	
 	});
+}
+
+//==============================================================================
+
+function toUpperCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
 //==============================================================================
@@ -62,8 +57,21 @@ $(document).ready(function(){
 
 	$('#addArtist').on('click', function(){
 		var searchedArtist = $("#artist-input").val().trim();
-		artistArray.push(searchedArtist);
+		var upperCaseArtist = toUpperCase(searchedArtist);
+		artistArray.push(upperCaseArtist);
 		renderButtons();
 		return false; //this is essential because we are using a form; if you don't return false it will refresh page
 	});
+
+	$("#artistGifs").on('click', '.giphy', function(){
+			var state = $(this).attr('data-state');
+			
+			if (state == 'still'){
+	            $(this).attr('src', $(this).data('animate'));
+	            $(this).attr('data-state', 'animate');
+	        }else{
+	            $(this).attr('src', $(this).data('still'));
+	            $(this).attr('data-state', 'still');
+	        }
+		})
 });
