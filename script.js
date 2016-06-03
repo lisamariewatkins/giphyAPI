@@ -10,6 +10,8 @@ var results;
 
 var currentGif;
 
+var state;
+
 //==============================================================================
 
 function renderButtons(){
@@ -32,20 +34,24 @@ function renderButtons(){
 					currentGif = results[i]
 					gifImage = $('<img>');
 					gifImage.attr('src', currentGif.images.fixed_height_still.url);
+					gifImage.attr('data-animate', currentGif.images.fixed_height.url);
+					gifImage.attr('data-still', currentGif.images.fixed_height_still.url);
+					gifImage.attr('data-state', "still")
+					gifImage.addClass('giphy');
 					gifDiv.append(gifImage);
 					$('#artistGifs').append(gifDiv);
 				}
 			});
-
-		$('#artistGifs').children().on('click', function(){
-			if (gifStatic === true){
-				gifImage.attr('src', currentGif.images.fixed_height.url);
-				gifStatic = false;
-			}
-			if (!gifStatic){
-				gifImage.attr('src', results[i].images.fixed_height_still.url);
-			}
-		});
+		$(".giphy").on('click', function(){
+		var state = $(this).attr('data-state');
+		if (state == 'still'){
+            $(this).attr('src', $(this).data('animate'));
+            $(this).attr('data-state', 'animate');
+        }else{
+            $(this).attr('src', $(this).data('still'));
+            $(this).attr('data-state', 'still');
+        }
+	})
 	});
 }
 
